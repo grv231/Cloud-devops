@@ -22,16 +22,13 @@ The summary for the creation and running of the first instance is as follows:
  - Instance type
  - Security group
  - SSH key-pair
-6. Creating security group
-7. Opening ports access for SSH access on the security group
-8. Describe the security groups configuration using various formats
-9. Create SSH key-pair
-10. Run the instance using aws-cli
-11. Monitor the instance status
-11. Querying the instance details such as dnsname etc.
+6. Creating security group and ppening ports access for SSH access on the security group
+7. Describe the security groups configuration using various formats
+8. Create SSH key-pair
+9. Run the instance using aws-cli
+10. Monitoring and querying the instance details such as dnsname etc.
 
 ### :four: Deploying webserver in :cloud: using AWS Cloudformation - Troposphere
-This is the first step in the project creation where we use aws-cli(command line interface) from our local systems to setup instances
-on AWS cloud. Some sample commands to spin up the instances have been mentioned in the "" folder present in the main project folders.
-The summary for the creation and running of the first instance is as follows:
+This is the second step where we deploy instances and setup infrastrcuture automatically using **AWS Cloudformation**. For this project, we are using the **Python Troposphere** to create the Cloudformation stack template. The steps for creating the template is as follows:
+
 
