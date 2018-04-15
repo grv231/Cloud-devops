@@ -1,4 +1,4 @@
-# Formulating infrastructure on AWS:cloud: using Devops techniques
+# Infrastructure on AWS :cloud: using Devops techniques
 
 ## Description:
 
