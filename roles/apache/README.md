@@ -24,7 +24,7 @@ In the directory **Apache/tasks/main.yml**, enter the following information:
 ```yml
 ---
 # tasks file for apache
-- name: Ensure that apache httpd is not installed in the framework
+- name: Ensure that apache httpd is not installed
   yum: name=httpd state=absent
 - name: Ensure httpd-tools service is not installed
   yum: name=httpd-tools state=absent
