@@ -1,4 +1,4 @@
-Role Name
+Role: PHP
 =========
 
 Role created for installing PHP 7 on AWS along with sub modules
