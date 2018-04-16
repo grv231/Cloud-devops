@@ -1,12 +1,12 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Role created for installing PHP 7 on AWS along with sub modules
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Make sure to follow the steps in the main project creation
 
 Role Variables
 --------------
@@ -18,14 +18,35 @@ Dependencies
 
 A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
 
-Example Playbook
+Playbook script
 ----------------
+Following is the playbook file for this role:
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+```yml
+---
+# tasks file for php
+- name: Install PHP 7 with common packages
+  yum: 
+    name: "{{ item }}" 
+    state: present
+  with_items:
+    - php70
+    - php70-gd
+    - php70-imap
+    - php70-mbstring
+    - php70-mysqlnd
+    - php70-opcache
+    - php70-pdo
+    - php70-pecl-apcu
+  notify: restart Apache
+- name: Upload index.php to the destination
+  copy:
+    src: index.php
+    dest: /var/www/html
+    owner: ec2-user
+    group: ec2-user
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```
 
 License
 -------
@@ -34,5 +55,4 @@ BSD
 
 Author Information
 ------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Gaurav Tripathi
