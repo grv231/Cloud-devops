@@ -1,31 +1,35 @@
-Role Name
+Role: Apache
 =========
 
-A brief description of the role goes here.
+This role has been created to install the apache (httpd) webserver on the AWS cloud.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+It is imperative that we remove the httpd (apache) service during the inital checks. The PHP role by default has httpd24 apache webserver installed when setting up the role for PHP.
 
-Role Variables
+Description
 --------------
-
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+We are first checking here to see if httpd24 apache webserver and tools are present on the destination. If that is the case, uninstall it using the **state=absent** keyword of playbook.
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+The PHP role depends on this Apache role to be installed first. We have mentioned the same information in the other role.
 
 Example Playbook
 ----------------
+In the directory **Apache/tasks/main.yml**, enter the following information:
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+```yml
+---
+# tasks file for apache
+- name: Ensure that apache httpd is not installed in the framework
+  yum: name=httpd state=absent
+- name: Ensure httpd-tools service is not installed
+  yum: name=httpd-tools state=absent
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```
 
 License
 -------
@@ -35,4 +39,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Gaurav Tripathi
