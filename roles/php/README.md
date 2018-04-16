@@ -16,7 +16,7 @@ A description of the settable variables for this role should go here, including 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Apache needs to be restarted after PHP module has been successfully deployed on servers. This is done in the **handlers** folder of the roles directory. In the main playbook, we use *notify* module to send notification to the Apache to restart the service
 
 Playbook script
 ----------------
