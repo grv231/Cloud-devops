@@ -17,7 +17,7 @@ Dependencies
 
 The PHP role depends on this Apache role to be installed first. We have mentioned the same information in the other role.
 
-Example Playbook
+Playbook
 ----------------
 In the directory **Apache/tasks/main.yml**, enter the following information:
 
