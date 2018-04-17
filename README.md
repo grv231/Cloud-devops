@@ -95,9 +95,37 @@ This is the second step where we deploy instances and setup infrastrcuture autom
     + ansible-galaxy init php
     + ansible-galaxy init apache
 - Navigate to the *tasks* folder of the roles. Documentation has been provided in the **roles** folder of this repository
+- After the roles have been created, change the main playbook file with the following information in the file **lamp.yml**
 
+```yml
+- hosts: all
+  become: yes
+  roles:
+    - apache
+    - php
+ ```
  
- 
+ #### Ansible Pull
+Ansible is an agentless automation tool which uses the **ansible pull** feature to pull ansible installation to each server/system. After ansible is pulled into each node/server, each ansible copy can pull configurations directly from the git repository branches to deploy configurations on sequential systems while the operations are performed locally. <br />
+
+This can be easily achieved using a *cron-job* to pull the changes. Some steps to complete the tasks are:
+1. Install git on remote EC2 machine (created in previous steps) using Ansible on local machine
+2. Install Ansible on remote EC2 machines using Ansible on local machine
+3. Since we are pulling the changes from a git repository into a remote git repository on local machine, we don't need SSH connection.
+4. We will create a custom inventory file called **localhost** and enter the following information:
+
+```
+[localhost]
+localhost ansible_connection=local
+
+```
+5. Finally, we create a cron job on the EC2 instance to pull the changes instantly. Cron job is given below:
+```
+ansible -m cron -a 'name=ansible-pull minute="*/5" job="/usr/local/bin/ansible-pull" -U https://github.com/grv231/Cloud-devops/' lamp.yml -i localhost all
+
+```
+6. Check inside the EC2 instance by using *crontab -l* command. 
+
 
 ### :five: Incorporating devops using CD/CI practices - *Ansible, Jenkins and PHPUnit test*
 This is the second step where we deploy instances and setup infrastrcuture automatically using **AWS Cloudformation**. For this project, we are using the **Python Troposphere** to create the Cloudformation stack template. We follow the practices of IaC (Infastructure as Code) using the troposphere library and json configuration. We are using **JSON-YAML** template here to create our infrastructure.
