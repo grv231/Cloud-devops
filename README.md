@@ -4,11 +4,14 @@
 
 ## Setting up the project:
 
+
 #### Variables for AWS CLI sub-project
+- export AMIID=<AMI_ID>
+- export SECURITYGRPID=<Your_securitygroupid>
 
 #### Variables for Dynamic Inventory AWS sub-project
-- export AWS_ACCESS_KEY_ID='Your ID'
-- export AWS_SECRET_ACCESS_KEY='Your AccessKey'
+- export AWS_ACCESS_KEY_ID=<Your_ID>
+- export AWS_SECRET_ACCESS_KEY=<Your_AccessKey>
 - export EC2_INI_PATH=/etc/ansible/ec2.ini
 - export ANSIBLE_HOSTS=/etc/ansible/ec2.py
 
@@ -125,7 +128,3 @@ ansible -m cron -a 'name=ansible-pull minute="*/5" job="/usr/local/bin/ansible-p
 
 ```
 6. Check inside the EC2 instance by using *crontab -l* command. 
-
-
-### :five: Incorporating devops using CD/CI practices - *Ansible, Jenkins and PHPUnit test*
-This is the second step where we deploy instances and setup infrastrcuture automatically using **AWS Cloudformation**. For this project, we are using the **Python Troposphere** to create the Cloudformation stack template. We follow the practices of IaC (Infastructure as Code) using the troposphere library and json configuration. We are using **JSON-YAML** template here to create our infrastructure.
