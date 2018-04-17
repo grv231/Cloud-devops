@@ -1,0 +1,32 @@
+# AWS CLI Commands
+
+# To configure settings for region, keys and output format
+aws configure
+
+# To check the current list of users from AWS IAM service
+aws iam list-users
+
+# Creating a AWS security group
+aws ec2 create-security-group --group-name lamp --description "Security group for LAMP project"
+
+# Opening port access for SSH
+aws ec2 authorize-security-group-ingress --group-name lamp --protocol tcp --port 22 --cidr 0.0.0.0/0
+
+# Opening port access for HTTP
+aws ec2 authorize-security-group-ingress --group-name lamp --protocol tcp --port 80 --cidr 0.0.0.0/0
+
+# Describing security group
+aws ec2 describe-security-groups --group-name lamp
+
+# Creating a SSH Key pair and copy contents to a .pem file to be used later for SSH access
+aws ec2 create-key-pair --key-name LampKey --output text
+
+# Creating EC2 instance
+aws ec2 run-instances --image-id $amiid --instance-type t2.micro --key-name LampKey --security-group-ids $securitygrpid
+
+# Monitoring instance status
+aws ec2 describe-instance-status --instance-ids <id_from_above_created_instance>
+
+# Querying specific results from an instance using CLI
+aws ec2 describe-instances --instance-ids <instance_id> --query "Reservations[].Instances[].PublicDNSName"
+
